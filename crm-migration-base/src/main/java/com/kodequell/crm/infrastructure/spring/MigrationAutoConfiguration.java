@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestClient;
 
 @Configuration
-@ConditionalOnBean(Sink.class)
+@ConditionalOnBean(Source.class)
 public class MigrationAutoConfiguration {
 
     @Value("${rest.quoteapi.baseurl}")
