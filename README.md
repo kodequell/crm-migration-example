@@ -4,7 +4,7 @@ This repository provides an example pattern for migrating data from one system i
 It is focused on reliable, repeatable data transfers and split into two Maven modules so 
 migration logic can be reused independently from the runnable migration job.
 
-The migration-core module is a Spring Boot autoconfiguration library that provides domain 
+The crm-migration-base is a Spring Boot autoconfiguration library that provides domain 
 models, mapping and transformation utilities, connector interfaces for source and destination
 systems. 
 
