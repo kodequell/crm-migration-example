@@ -2,8 +2,6 @@ package com.kodequell.crm.infrastructure.examplecrm.repository;
 
 import com.kodequell.crm.domain.entity.Quote;
 import com.kodequell.crm.domain.repository.QuoteRepository;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.PositiveOrZero;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.ParameterizedTypeReference;
@@ -41,7 +39,7 @@ public class ExampleCrmQuoteRepository implements QuoteRepository {
      * @return a {@link Stream} of {@link Quote} entities, or an empty stream if the request fails
      */
     @Override
-    public Stream<Quote> findAll(int page) {
+    public List<Quote> findAll(int page) {
         try {
             log.info("Requesting quotes page {}", page);
 
@@ -50,10 +48,11 @@ public class ExampleCrmQuoteRepository implements QuoteRepository {
                     .uri(createUriForPageFetch(page))
                     .retrieve().<List<QuoteData>>body(new ParameterizedTypeReference<>() {})
                     .stream()
-                    .map(ExampleCrmQuoteRepository::convert);
+                    .map(ExampleCrmQuoteRepository::convert)
+                    .toList();
         } catch (Exception e) {
             log.error("Fetch quotes data page failed", e);
-            return Stream.of();
+            return List.of();
         }
     }
 
@@ -96,7 +95,7 @@ public class ExampleCrmQuoteRepository implements QuoteRepository {
         return Quote.builder().id(item.id).name(item.name).created(LocalDateTime.now()).build();
     }
 
-    public record QuotesTotalAmount(@PositiveOrZero int totalAmount) {}
+    public record QuotesTotalAmount(int totalAmount) {}
 
-    public record QuoteData(@NotBlank String id, @NotBlank String name) {}
+    public record QuoteData(String id, String name) {}
 }

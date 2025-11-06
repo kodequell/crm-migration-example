@@ -7,10 +7,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
-
-import static java.util.function.Function.identity;
 
 @Component
 @RequiredArgsConstructor
@@ -28,6 +27,6 @@ public class ExampleCrmQuoteSource implements Source<Quote> {
         return IntStream.iterate(0, n -> n + 1)
                         .limit(totalAmount / 5)
                         .mapToObj(quoteRepository::findAll)
-                        .flatMap(identity());
+                        .flatMap(Collection::stream);
     }
 }

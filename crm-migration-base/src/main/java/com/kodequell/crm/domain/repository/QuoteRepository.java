@@ -3,11 +3,10 @@ package com.kodequell.crm.domain.repository;
 import com.kodequell.crm.domain.entity.Quote;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 import org.springframework.validation.annotation.Validated;
 
-import java.util.stream.Stream;
+import java.util.List;
 
 /**
  * Repository interface for managing {@link Quote} entities.
@@ -29,7 +28,7 @@ public interface QuoteRepository {
      *         the page number to retrieve, must be positive
      * @return a stream of {@link Quote} entities
      */
-    Stream<@NotNull @Valid Quote> findAll(@Positive int page);
+    List<@NotNull @Valid Quote> findAll(@PositiveOrZero int page);
 
     /**
      * Returns the total number of {@link Quote} entities.
