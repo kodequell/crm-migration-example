@@ -1,7 +1,8 @@
 package com.kodequell.crm.infrastructure.examplecrm;
 
 import com.kodequell.crm.domain.entity.Quote;
-import com.kodequell.crm.infrastructure.examplecrm.ExampleCrmQuoteSource.QuoteData;
+import com.kodequell.crm.infrastructure.examplecrm.source.ExampleCrmQuoteSource;
+import com.kodequell.crm.infrastructure.examplecrm.repository.ExampleCrmQuoteRepository.QuoteData;
 import com.kodequell.crm.testsupport.IntegrationTestSupport;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,5 +1,9 @@
 package com.kodequell.crm.domain.service;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+import org.springframework.validation.annotation.Validated;
+
 import java.util.stream.Stream;
 
 /**
@@ -12,6 +16,7 @@ import java.util.stream.Stream;
  * @param <T>
  *         the type of object this source produces
  */
+@Validated
 public interface Source<T> {
 
     /**
@@ -23,5 +28,5 @@ public interface Source<T> {
      *
      * @return a {@link Stream} of objects produced by the source
      */
-    Stream<T> connect();
+    Stream<@NotNull @Valid T> connect();
 }
