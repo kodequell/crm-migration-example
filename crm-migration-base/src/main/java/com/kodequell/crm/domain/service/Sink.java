@@ -1,5 +1,9 @@
 package com.kodequell.crm.domain.service;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+import org.springframework.validation.annotation.Validated;
+
 /**
  * Represents a generic destination for data in the domain.
  * <p>
@@ -10,6 +14,7 @@ package com.kodequell.crm.domain.service;
  * @param <T>
  *         the type of object this sink consumes
  */
+@Validated
 public interface Sink<T> {
 
     /**
@@ -21,5 +26,5 @@ public interface Sink<T> {
      * @param object
      *         the object to write to the sink
      */
-    void write(T object);
+    void write(@NotNull @Valid T object);
 }
