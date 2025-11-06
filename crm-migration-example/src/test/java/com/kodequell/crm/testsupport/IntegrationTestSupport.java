@@ -57,6 +57,7 @@ public class IntegrationTestSupport implements DomainTestSupport {
             Arrays.stream(mockServerClient.retrieveRecordedRequests(null)).forEach(System.err::println);
             Assertions.fail("MockServer expectations should be empty at this point");
         }
+        mockServerClient.reset();
     }
 
     protected void expectQuoteDataPageRequest(int page, List<QuoteData> responseList) {
